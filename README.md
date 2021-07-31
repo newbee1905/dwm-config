@@ -1,14 +1,14 @@
 # My dwm config
 
-### Install
+## Install
 ```
 make
 sudo make install
 ```
 
-### TODO
-##### Adding patches:
- - [ ] vanitygaps
+## TODO
+#### Adding patches:
+ - [ ] ~~vanitygaps~~
  - [ ] anybar
  - [ ] float border color
  - [ ] canfocusrule
@@ -17,3 +17,7 @@ sudo make install
  - [ ] actualfullscreen
  - [ ] fsignal
  - [ ] dwmc
+ - [ ] colorbar
+ - [ ] scratchpads
+ - [ ] swallow
+ - [ ] sticky
