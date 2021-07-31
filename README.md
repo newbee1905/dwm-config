@@ -1,5 +1,10 @@
 # My dwm config
 
+## Dependencies
+ - libxcb
+ - Xlib-libxcb
+ - xcb-res
+
 ## Install
 ```
 make
@@ -19,5 +24,5 @@ sudo make install
  - [ ] dwmc
  - [ ] colorbar
  - [ ] scratchpads
- - [ ] swallow
+ - [x] swallow
  - [ ] sticky
