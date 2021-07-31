@@ -26,4 +26,4 @@ sudo make install
  - [ ] scratchpads
  - [x] swallow
  - [ ] sticky
- - [ ] stacker
+ - [x] stacker
