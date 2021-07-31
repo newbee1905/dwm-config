@@ -151,6 +151,8 @@ typedef struct {
 	const char *instance;
 	const char *title;
 	unsigned int tags;
+	int isterminal;
+	int noswallow;
 	int isfloating;
 	int monitor;
 } Rule;
@@ -1140,7 +1142,7 @@ manage(Window w, XWindowAttributes *wa)
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
 	if (term)
-		swalloc(term, c);
+		swallow(term, c);
 	focus(NULL);
 }
 
