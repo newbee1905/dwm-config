@@ -30,7 +30,7 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title       tags mask     isfloating   isterminal  noswallow   monitor */
 	{ "Gimp",        NULL,       NULL,       0,            1,           0,          0,          -1 },
-	{ "firefox",     NULL,       NULL,       1 << 8,       0,           0,          -1,         -1 },
+	{ "firefox",     NULL,       NULL,       1 << 2,       0,           0,          -1,         -1 },
 	{ "st-256color", NULL,       NULL,       0,            1,           1,          0,          -1 },
 };
 

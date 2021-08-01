@@ -22,7 +22,7 @@ sudo make install
  - [ ] actualfullscreen
  - [ ] fsignal
  - [ ] dwmc
- - [ ] colorbar
+ - [ ] ~~colorbar~~
  - [ ] scratchpads
  - [x] swallow
  - [ ] sticky
