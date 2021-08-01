@@ -73,7 +73,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *upvol[]    = { "pulsemixer", "--change-volume", "+5",     NULL };
 static const char *downvol[]  = { "pulsemixer", "--change-volume", "-5",     NULL };
-static const char *mutevoll[] = { "pulsemixer", "--toggle-mute",             NULL };
+static const char *mutevol[] =  { "pulsemixer", "--toggle-mute",             NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
