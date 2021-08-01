@@ -19,7 +19,7 @@ sudo make install
  - [ ] canfocusrule
  - [ ] canfocusfloating
  - [ ] cfacts
- - [ ] actualfullscreen
+ - [x] actualfullscreen
  - [ ] fsignal
  - [ ] dwmc
  - [ ] ~~colorbar~~
