@@ -13,12 +13,12 @@ sudo make install
 
 ## TODO
 #### Adding patches:
- - [ ] ~~vanitygaps~~
+ - [x] vanitygaps
  - [ ] anybar
  - [ ] float border color
  - [ ] canfocusrule
  - [ ] canfocusfloating
- - [ ] cfacts
+ - [x] cfacts
  - [x] actualfullscreen
  - [ ] fsignal
  - [ ] dwmc
