@@ -27,3 +27,4 @@ sudo make install
  - [x] swallow
  - [ ] sticky
  - [x] stacker
+ - [ ] urgent border
