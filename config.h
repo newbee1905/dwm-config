@@ -13,7 +13,6 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "M+ 2m:size=14" };
-static const char dmenufont[]       = "M+ 2m:size=14";
 // Load colors from pywal
 #define wal "/home/newbee/.cache/wal/colors-wal-dwm.h"
 #if __has_include(wal)
