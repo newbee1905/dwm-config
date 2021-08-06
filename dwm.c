@@ -752,6 +752,13 @@ configurerequest(XEvent *e)
 		wc.width = ev->width;
 		wc.height = ev->height;
 		wc.border_width = ev->border_width;
+		if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
+				|| &monocle == c->mon->lt[c->mon->sellt]->arrange)
+				&& !c->isfullscreen && !c->isfloating) {
+			c->w = wc.width += c->bw * 2;
+			c->h = wc.height += c->bw * 2;
+			wc.border_width = 0;
+		}
 		wc.sibling = ev->above;
 		wc.stack_mode = ev->detail;
 		XConfigureWindow(dpy, ev->window, ev->value_mask, &wc);
@@ -1761,7 +1768,7 @@ setup(void)
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
-	bh = usealtbar ? 0 : user_bh ?: drw->fonts->h + 2;
+	bh = usealtbar ? 0 : user_bh ? user_bh : drw->fonts->h + 2;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
