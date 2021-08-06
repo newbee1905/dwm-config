@@ -14,7 +14,7 @@ sudo make install
 ## TODO
 #### Adding patches:
  - [x] vanitygaps
- - [ ] anybar
+ - [x] anybar
  - [ ] float border color
  - [ ] canfocusrule
  - [ ] canfocusfloating
@@ -28,6 +28,8 @@ sudo make install
  - [ ] sticky
  - [x] stacker
  - [x] urgent border
+ - [x] dwm-bar-height
+ - [x] pertag
 
 #### Writing my own addons
  - [ ] Try to make scratchpads only use 1 tag
