@@ -27,7 +27,7 @@ sudo make install
  - [x] swallow
  - [ ] sticky
  - [x] stacker
- - [ ] urgent border
+ - [x] urgent border
 
 #### Writing my own addons
  - [ ] Try to make scratchpads only use 1 tag
