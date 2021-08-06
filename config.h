@@ -32,6 +32,21 @@ static const char *colors[][3]      = {
 };
 #endif
 
+/**
+* TODO: Think of a way to make all scratchpad only use one tag
+*/
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "128x34", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	// {"spranger",    spcmd2},
+	// {"keepassxc",   spcmd3},
+};
+
 /* tagging */
 static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 
@@ -44,6 +59,7 @@ static const Rule rules[] = {
 	{ "Gimp",        NULL,       NULL,       0,            1,           0,          0,          -1 },
 	{ "firefox",     NULL,       NULL,       1 << 2,       0,           0,          -1,         -1 },
 	{ "st-256color", NULL,       NULL,       0,            1,           1,          0,          -1 },
+	{ NULL,          "spterm",   NULL,       SPTAG(0),     1,           1,          0,          -1 },
 };
 
 /* layout(s) */
@@ -135,6 +151,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ Mod1Mask,            	        XK_Return,  togglescratch, {.ui = 0 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

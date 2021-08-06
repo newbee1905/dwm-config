@@ -23,8 +23,12 @@ sudo make install
  - [ ] fsignal
  - [ ] dwmc
  - [ ] ~~colorbar~~
- - [ ] scratchpads
+ - [x] scratchpads
  - [x] swallow
  - [ ] sticky
  - [x] stacker
  - [ ] urgent border
+
+#### Writing my own addons
+ - [ ] Try to make scratchpads only use 1 tag
+ - [ ] config dwm using lua
