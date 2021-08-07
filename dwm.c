@@ -161,9 +161,9 @@ typedef struct {
 	const char *instance;
 	const char *title;
 	unsigned int tags;
+	int isfloating;
 	int isterminal;
 	int noswallow;
-	int isfloating;
 	int monitor;
 } Rule;
 
@@ -360,14 +360,13 @@ applyrules(Client *c)
 		&& (!r->instance || strstr(instance, r->instance)))
 		{
 			c->isfloating = r->isfloating;
+			c->isterminal = r->isterminal;
+			c->noswallow = r->noswallow;
 			c->tags |= r->tags;
 			if ((r->tags & SPTAGMASK) && r->isfloating) {
 				c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
 				c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
 			}
-			c->isterminal = r->isterminal;
-			c->noswallow = r->noswallow;
-			c->tags |= r->tags;
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
 				c->mon = m;
@@ -752,13 +751,6 @@ configurerequest(XEvent *e)
 		wc.width = ev->width;
 		wc.height = ev->height;
 		wc.border_width = ev->border_width;
-		if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
-				|| &monocle == c->mon->lt[c->mon->sellt]->arrange)
-				&& !c->isfullscreen && !c->isfloating) {
-			c->w = wc.width += c->bw * 2;
-			c->h = wc.height += c->bw * 2;
-			wc.border_width = 0;
-		}
 		wc.sibling = ev->above;
 		wc.stack_mode = ev->detail;
 		XConfigureWindow(dpy, ev->window, ev->value_mask, &wc);
@@ -1486,6 +1478,14 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
 	wc.border_width = c->bw;
+	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
+	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
+	    && !c->isfullscreen && !c->isfloating
+	    && NULL != c->mon->lt[c->mon->sellt]->arrange) {
+		c->w = wc.width += c->bw * 2;
+		c->h = wc.height += c->bw * 2;
+		wc.border_width = 0;
+	}
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
@@ -1903,7 +1903,7 @@ stackpos(const Arg *arg) {
 		return i;
 	}
 	else if(ISINC(arg->i)) {
-		if(!selmon->sel)
+		if(!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 			return -1;
 		for(i = 0, c = selmon->clients; c != selmon->sel; i += ISVISIBLE(c) ? 1 : 0, c = c->next);
 		for(n = i; c; n += ISVISIBLE(c) ? 1 : 0, c = c->next);
