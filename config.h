@@ -17,24 +17,19 @@ static const int usealtbar          = 0;        /* 1 means use non-dwm status ba
 static const char *altbarclass      = "Bar";    /* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar"; /* Alternate bar launch command */
 static const char *fonts[]          = { "M+ 2m:size=16:antialias=true:autohint=true", "JoyPixels:pixelsize=16:antialias=true:autohint=true" };
-// Load colors from pywal
-#define wal "/home/newbee/.cache/wal/colors-wal-dwm.h"
-#if __has_include(wal)
-#include wal
-#else
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_urgborder[]   = "#ff0000";
+
+static const char col_gray1[]       = "#1C1C1C";
+static const char col_gray2[]       = "#585858";
+static const char col_gray3[]       = "#bcbcbc";
+static const char col_gray4[]       = "#6c6c6c";
+static const char col_purple[]      = "#5F5F87";
+static const char col_urgborder[]   = "#af5f5f";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   			*/
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 			},
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  			},
-	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
+	/*               fg         bg             border   			*/
+	[SchemeNorm] = { col_gray4, col_gray1,     col_gray2 			},
+	[SchemeSel]  = { col_gray3, col_purple,    col_purple 		},
+	[SchemeUrg]  = { col_gray3, col_urgborder, col_urgborder  },
 };
-#endif
 
 /**
 * TODO: Think of a way to make all scratchpad only use one tag
