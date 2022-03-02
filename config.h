@@ -5,8 +5,8 @@
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 5;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -18,12 +18,12 @@ static const char *altbarclass      = "Bar";    /* Alternate bar class name */
 static const char *altbarcmd        = "$HOME/bar"; /* Alternate bar launch command */
 static const char *fonts[]          = { "M+ 2m:size=16:antialias=true:autohint=true", "JoyPixels:pixelsize=16:antialias=true:autohint=true" };
 
-static const char col_gray1[]       = "#1C1C1C";
-static const char col_gray2[]       = "#585858";
-static const char col_gray3[]       = "#bcbcbc";
-static const char col_gray4[]       = "#6c6c6c";
-static const char col_purple[]      = "#5F5F87";
-static const char col_urgborder[]   = "#af5f5f";
+static const char col_gray1[]       = "#0f0f0f";
+static const char col_gray2[]       = "#4c4c4c";
+static const char col_gray3[]       = "#262626";
+static const char col_gray4[]       = "#767676";
+static const char col_purple[]      = "#8A98AC";
+static const char col_urgborder[]   = "#c49ea0";
 static const char *colors[][3]      = {
 	/*               fg         bg             border   			*/
 	[SchemeNorm] = { col_gray4, col_gray1,     col_gray2 			},
@@ -92,27 +92,30 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
 	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
-	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
-	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
-	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
-	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \
-	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },
- */
+
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *roficmd[]	= {
+    "rofi",  "-modi", "combi", "-combi-modi", "window,drun,run,ssh",
+    "-show", "combi", NULL };
+static const char *termcmd[]  = { "prime-run", "st", NULL };
 static const char *upvol[]    = { "pamixer", "-i", "5",   NULL };
 static const char *downvol[]  = { "pamixer", "-d", "5",   NULL };
 static const char *mutevol[] =  { "pamixer", "-t",        NULL };
 
+static const char *scrfullcmd[] = { "flameshot", "full", "-c", "-p", "~/Screenshots", NULL };
+static const char *scrcmd[]			= { "flameshot", "gui", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ControlMask|ShiftMask, XK_p,      spawn,			     {.v = scrfullcmd } },
+	{ MODKEY|ShiftMask, XK_p,       spawn,			               {.v = scrcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
